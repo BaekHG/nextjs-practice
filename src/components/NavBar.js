@@ -12,6 +12,13 @@ export default function NavBar() {
       <Link href="/about">
         <h1>About</h1>
       </Link>
+
+      {/* style jsx */}
+      <style jsx>{`
+        nav {
+          background-color: tomato;
+        }
+      `}</style>
     </nav>
   );
 }
