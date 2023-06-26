@@ -1,11 +1,23 @@
 import Seo from '../components/Seo';
-import { useState, useEffect } from 'react';
 import _ from 'lodash';
+
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 export default function Home({ movies }) {
-  // const [movies, setMovies] = useState([]);
-
-  // console.log(results);
-
+  const router = useRouter();
+  const onClickAction = useCallback((movie) => {
+    router.push(`/movies/${movie.title}/${movie.id}`);
+    // router.push(
+    //   {
+    //     pathname: `/movies/${movie.id}`,
+    //     query: {
+    //       title: movie.title,
+    //     },
+    //   },
+    //   `/movies/${movie.id}`
+    // );
+  }, []);
   return (
     <div className="movie-container">
       <Seo title="Home" />
@@ -15,8 +27,17 @@ export default function Home({ movies }) {
         _.map(movies, (movie) => (
           <div className="movie" key={movie.id}>
             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
-            <h4>{movie.original_title}</h4>
+            <h4 onClick={() => onClickAction(movie)}>{movie.original_title}</h4>
           </div>
+
+          // <Link href={`/movies/${movie.id}`} key={movie.id}>
+          //   <div className="movie" key={movie.id}>
+          //     <img
+          //       src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          //     />
+          //     <h4>{movie.original_title}</h4>
+          //   </div>
+          // </Link>
         ))
       )}
 

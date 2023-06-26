@@ -1,10 +1,10 @@
-import NavBar from '../components/NavBar';
-// export default function About() {
+import Seo from '../components/Seo';
 
 const Home = () => {
   return (
     <div>
-      <NavBar />
+      <Seo title={'About'} />
+      <h1>About</h1>
     </div>
   );
 };
